@@ -1,0 +1,41 @@
+# muSLAM hyperparameters — identical to Tab. III of the manuscript.
+# Values are kept fixed across all experiments unless noted.
+
+dataset: tum_rgbd
+
+preprocessing:            # Sec. III-B, Eqs. (2)-(5)
+  tau_trans: 0.15         # translational baseline threshold [m]
+  tau_track: 15           # min tracked features
+  tau_overlap: 0.7        # max feature overlap ratio
+  ronafnet:
+    enabled: true
+    async: true           # keyframes only, parallel thread
+
+uncertainty:              # Sec. III-C, Eqs. (7)-(8)
+  beta: 100.0             # confidence gating sharpness (gradient term)
+  gamma: 10.0             # confidence gating sharpness (opacity term)
+  gradient_ema: true      # g_i = EMA of ||grad L|| over recent mapping iters
+
+keyframe_selection:       # Sec. III-C, Eqs. (9)-(11), Alg. 2
+  k_select: 0.8           # adaptive threshold scaling (per-dataset, see paper)
+  n_recent: 5             # window for running-average information gain
+
+adaptive_lr:              # Sec. III-C, Eqs. (12)-(13)
+  f_min: 0.1
+  f_max: 2.0
+  steepness: 10.0         # sigmoid transition steepness s
+
+optimization:             # Sec. III-D
+  n_track: 200            # tracking iterations per frame
+  n_map: 20               # mapping iterations per keyframe
+  lambda_ssim: 0.3
+  lr_opacity: 0.15
+  lr_position: 0.0003
+  lr_color: 0.009
+
+loop_closure:             # Sec. III-E, Eqs. (22)-(24)
+  tau_dbow2: 0.75         # DBoW2 similarity threshold
+  huber_alpha: 1.5        # adaptive warping-loss scaling (Eq. 23)
+  pgo:
+    solver: g2o_lm        # Levenberg-Marquardt, sparse Cholesky
+    robust_kernel: huber

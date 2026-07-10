@@ -1,0 +1,6 @@
+# Evaluation tooling (see docs/evaluation_protocol.md)
+evo                 # ATE RMSE (evo_ape, Umeyama SE(3) alignment)
+lpips               # LPIPS, AlexNet backbone
+scikit-image        # SSIM
+numpy
+opencv-python
