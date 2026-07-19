@@ -48,9 +48,8 @@ A full demonstration of the running system is provided in [`demo/full_demo.mp4`]
 
 | Segment | Content |
 |---|---|
-| Real-time mapping | TUM-RGBD sequences at native speed, with live per-primitive confidence visualization |
-| On-robot runs | Wheeled platform (onboard RTX 3090): live camera feed + incrementally growing Gaussian field |
-| Loop correction | Before/after comparisons on long-term sequences |
+| Real-time mapping | TUM-RGBD sequences mapped at native speed |
+| On-robot runs | Wheeled platform (onboard RTX 3090): live camera feed + incrementally growing photorealistic Gaussian map |
 
 <div align="center">
 <img src="assets/confidence_module.png" width="55%" alt="Confidence estimation module"/>
